@@ -20,17 +20,17 @@ public class RiotGamesApiClient {
     private final ParameterizedTypeReference<List<SummonerGameGrade>> summnorGameGradeType = new ParameterizedTypeReference<List<SummonerGameGrade>>() {};
 
 
-    private final String currentSummnorURL = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{cityName}?api_key={apiKey}";
-    private final String currentSummnorGradeURL = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{encryptedSummonerId}?api_key={apiKey}";
+    private final String currentSummonerURL = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{cityName}?api_key={apiKey}";
+    private final String currentSummonerGradeURL = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{encryptedSummonerId}?api_key={apiKey}";
 
 
     public SummonerInformation getSummonerInformation(String summonerName) {
-        SummonerInformation summonerInformation = restTemplate.exchange(this.currentSummnorURL, HttpMethod.GET, null, SummonerInformation.class, summonerName, apiKey)
+        SummonerInformation summonerInformation = restTemplate.exchange(this.currentSummonerURL, HttpMethod.GET, null, SummonerInformation.class, summonerName, apiKey)
                 .getBody();
         return summonerInformation;
     }
 
-    public List<SummonerGameGrade> getSummnorGameGrade(String encryptedSummonerId){
-        return  restTemplate.exchange(currentSummnorGradeURL, HttpMethod.GET, null, summnorGameGradeType, encryptedSummonerId, apiKey).getBody();
+    public List<SummonerGameGrade> getSummonerGameGrade(String encryptedSummonerId){
+        return  restTemplate.exchange(currentSummonerGradeURL, HttpMethod.GET, null, summnorGameGradeType, encryptedSummonerId, apiKey).getBody();
     }
 }

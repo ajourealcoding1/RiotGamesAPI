@@ -49,7 +49,7 @@ public class SummonerService {
         SummonerInformation summonerInformation = riotGamesApiClient.getSummonerInformation(summnorName);
         String encryptedId = summonerInformation.getId();
 
-        List<SummonerGameGrade> summonerGameGradeList = riotGamesApiClient.getSummnorGameGrade(encryptedId);
+        List<SummonerGameGrade> summonerGameGradeList = riotGamesApiClient.getSummonerGameGrade(encryptedId);
 
         SummonerGameGrade summnorSummonerGameGrade = summonerGameGradeList.remove(0);
 
