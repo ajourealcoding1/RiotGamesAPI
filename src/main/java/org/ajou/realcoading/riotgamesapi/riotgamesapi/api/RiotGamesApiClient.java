@@ -1,5 +1,6 @@
 package org.ajou.realcoading.riotgamesapi.riotgamesapi.api;
 
+
 import org.ajou.realcoading.riotgamesapi.riotgamesapi.domain.SummonerInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -21,4 +22,3 @@ public class RiotGamesApiClient {
     }
 
 
-}
