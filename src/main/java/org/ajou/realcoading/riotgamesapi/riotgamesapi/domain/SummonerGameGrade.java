@@ -7,7 +7,8 @@ import org.springframework.data.annotation.Id;
 public class SummonerGameGrade {
 
     private String queueType;
-    @Id private String summonerName;
+    @Id
+    private String summonerName;
     private boolean hostStreak;
     private MiniSeriesDTO miniSeries;
     private int wins;
@@ -22,7 +23,7 @@ public class SummonerGameGrade {
     private int leaguePoints;
 
     @Data
-    public static class MiniSeriesDTO{
+    public static class MiniSeriesDTO {
         private String progress;
         private int losses;
         private int target;

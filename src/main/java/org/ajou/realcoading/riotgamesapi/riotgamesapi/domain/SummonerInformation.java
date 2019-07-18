@@ -7,7 +7,8 @@ import org.springframework.data.annotation.Id;
 public class SummonerInformation {
 
     private int profileIconId;
-    @Id private String name;
+    @Id
+    private String name;
     private String puuid;
     private long summonerLevel;
     private String id;
