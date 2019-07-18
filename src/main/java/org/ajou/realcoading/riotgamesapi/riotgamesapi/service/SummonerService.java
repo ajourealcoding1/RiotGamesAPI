@@ -53,7 +53,7 @@ public class SummonerService {
 
         SummonerGameGrade summnorSummonerGameGrade = summonerGameGradeList.remove(0);
 
-        SummonerGameGrade summnorSummonerGameGradeFromDb = summonerGameGradeRepository.findGameGradeBySummnorName(summnorName);
+        SummonerGameGrade summnorSummonerGameGradeFromDb = summonerGameGradeRepository.findGameGradeBySummonerName(summnorName);
 
 
         if(summnorSummonerGameGrade != null || summnorSummonerGameGradeFromDb == null || !summnorSummonerGameGrade.equals(summnorSummonerGameGradeFromDb)) {
@@ -66,10 +66,10 @@ public class SummonerService {
     }
 
     public SummonerInformation getCurrentSummnorBySummnorName(String summonerName) {
-        return summonerInformationRepository.findCurrentSummnorBySummnorName(summonerName);
+        return summonerInformationRepository.findCurrentSummonerBySummonerName(summonerName);
     }
 
     public SummonerGameGrade getGameGradeBySummnorName(String accurateSummnorNameSummonerName){
-        return summonerGameGradeRepository.findGameGradeBySummnorName(accurateSummnorNameSummonerName);
+        return summonerGameGradeRepository.findGameGradeBySummonerName(accurateSummnorNameSummonerName);
     }
 }

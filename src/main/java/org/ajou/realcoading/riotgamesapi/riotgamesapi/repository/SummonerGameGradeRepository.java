@@ -13,11 +13,11 @@ public class SummonerGameGradeRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public SummonerGameGrade insertOrUpdatedSummnorGameGrade(SummonerGameGrade summonerGameGrade) {
+    public SummonerGameGrade insertOrUpdatedSummonerGameGrade(SummonerGameGrade summonerGameGrade) {
         return mongoTemplate.save(summonerGameGrade);
     }
 
-    public SummonerGameGrade findGameGradeBySummnorName(String summonerName) {
+    public SummonerGameGrade findGameGradeBySummonerName(String summonerName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("summonerName").is(summonerName));
 

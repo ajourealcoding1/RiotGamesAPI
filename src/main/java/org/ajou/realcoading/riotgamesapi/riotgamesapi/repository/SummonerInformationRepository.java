@@ -13,11 +13,11 @@ public class SummonerInformationRepository {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public SummonerInformation insertOrUpdatedinformation(SummonerInformation summonerInformation) {
+    public SummonerInformation insertOrUpdatedSummonerinformation(SummonerInformation summonerInformation) {
         return mongoTemplate.save(summonerInformation);
     }
 
-    public SummonerInformation findCurrentSummnorBySummnorName(String summonerName) {
+    public SummonerInformation findCurrentSummonerBySummonerName(String summonerName) {
         Query query = new Query();
         query.addCriteria(Criteria.where("name").is(summonerName));
 
