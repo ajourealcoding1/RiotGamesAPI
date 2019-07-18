@@ -56,7 +56,7 @@ public class SummonerService {
         SummonerGameGrade SummonerGameGradeFromDb = summonerGameGradeRepository.findGameGradeBySummonerName(summonerName);
 
 
-        if(SummonerGameGrade != null || SummonerGameGradeFromDb == null || !SummonerGameGrade.equals(SummonerGameGradeFromDb)) {
+        if((SummonerGameGrade != null && SummonerGameGradeFromDb == null) || !SummonerGameGrade.equals(SummonerGameGradeFromDb)) {
             SummonerGameGrade insertedOrUpdatedSummonerGameGrade = summonerGameGradeRepository.insertOrUpdatedSummonerGameGrade(SummonerGameGrade);
             log.info("SummonerGameGrade has inserted or updated successfully. SummonerGameGrade : {}", insertedOrUpdatedSummonerGameGrade);
         }
