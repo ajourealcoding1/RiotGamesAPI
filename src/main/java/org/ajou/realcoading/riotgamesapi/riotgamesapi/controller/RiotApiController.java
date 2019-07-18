@@ -1,8 +1,10 @@
 package org.ajou.realcoading.riotgamesapi.riotgamesapi.controller;
 
+import org.ajou.realcoading.riotgamesapi.riotgamesapi.domain.SummonerGameGrade;
 import org.ajou.realcoading.riotgamesapi.riotgamesapi.service.SummonerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +19,12 @@ public class RiotApiController {
     private SummonerService summonerService;
 
     @GetMapping("available-summonerName")
-    public List<String> getAvailableSummonerName() throws IOException{
+    public List<String> getAvailableSummonerName() throws IOException {
         return summonerService.getAvailableSummonerNames();
     }
 
+    @GetMapping("gameGrade/by-summonerName/{summonerName}")
+    public SummonerGameGrade getSummonerGameGrade(@PathVariable String summonerName) {
+        return summonerService.getGameGradeBySummonerName(summonerName);
+    }
 }
