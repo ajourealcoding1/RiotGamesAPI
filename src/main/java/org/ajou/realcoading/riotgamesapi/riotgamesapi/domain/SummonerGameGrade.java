@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 @Data
-public class League {
+public class SummonerGameGrade {
 
     private String queueType;
     @Id private String summonerName;
