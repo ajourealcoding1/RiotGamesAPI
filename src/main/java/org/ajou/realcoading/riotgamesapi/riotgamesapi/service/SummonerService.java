@@ -27,49 +27,49 @@ public class SummonerService {
     @Autowired
     private SummonerGameGradeRepository summonerGameGradeRepository;
 
-    private LinkedList<String> cityNamesQueue = new LinkedList<>();
-
-    public List<String> getAvailableCityNames() throws IOException {
-        File availableSummnorNamesFile = new File("availableSummnorNames");
+    public List<String> getAvailableSummonerNames() throws IOException {
+        File availableSummonerNamesFile = new File("Riotgames-API");
         ObjectMapper objectMapper = new ObjectMapper();
 
-        return objectMapper.readValue(availableSummnorNamesFile, new TypeReference<List<String>>() {});
+        return objectMapper.readValue(availableSummonerNamesFile, new TypeReference<List<String>>() {});
     }
+
+    private LinkedList<String> summonerNamesQueue = new LinkedList<>();
 
     @Scheduled(fixedDelay = 2000L)
     public void getSummnorGameGradePeriodicallyByCityName() throws IOException {
-        if (cityNamesQueue.isEmpty()) {
-            List<String> availableSummnorNames = this.getAvailableCityNames();
-            cityNamesQueue.addAll(availableSummnorNames);
+        if (summonerNamesQueue.isEmpty()) {
+            List<String> availableSummonerNames = this.getAvailableSummonerNames();
+            summonerNamesQueue.addAll(availableSummonerNames);
         }
 
-        String summnorName = cityNamesQueue.pop();
-        cityNamesQueue.add(summnorName);
+        String summonerName = summonerNamesQueue.pop();
+        summonerNamesQueue.add(summonerName);
 
-        SummonerInformation summonerInformation = riotGamesApiClient.getSummonerInformation(summnorName);
+        SummonerInformation summonerInformation = riotGamesApiClient.getSummonerInformation(summonerName);
         String encryptedId = summonerInformation.getId();
 
         List<SummonerGameGrade> summonerGameGradeList = riotGamesApiClient.getSummonerGameGrade(encryptedId);
 
-        SummonerGameGrade summnorSummonerGameGrade = summonerGameGradeList.remove(0);
+        SummonerGameGrade SummonerGameGrade = summonerGameGradeList.remove(0);
 
-        SummonerGameGrade summnorSummonerGameGradeFromDb = summonerGameGradeRepository.findGameGradeBySummonerName(summnorName);
+        SummonerGameGrade SummonerGameGradeFromDb = summonerGameGradeRepository.findGameGradeBySummonerName(summonerName);
 
 
-        if(summnorSummonerGameGrade != null || summnorSummonerGameGradeFromDb == null || !summnorSummonerGameGrade.equals(summnorSummonerGameGradeFromDb)) {
-            SummonerGameGrade insertedOrUpdatedSummnorSummonerGameGrade = summonerGameGradeRepository.insertOrUpdatedSummnorGameGrade(summnorSummonerGameGrade);
-            log.info("SummonerGameGrade has inserted or updated successfully. SummonerGameGrade : {}", insertedOrUpdatedSummnorSummonerGameGrade);
+        if(SummonerGameGrade != null || SummonerGameGradeFromDb == null || !SummonerGameGrade.equals(SummonerGameGradeFromDb)) {
+            SummonerGameGrade insertedOrUpdatedSummonerGameGrade = summonerGameGradeRepository.insertOrUpdatedSummonerGameGrade(SummonerGameGrade);
+            log.info("SummonerGameGrade has inserted or updated successfully. SummonerGameGrade : {}", insertedOrUpdatedSummonerGameGrade);
         }
         else{
             log.info("SummonerGameGrade and SummonerGameGradeFromDb are the same");
         }
     }
 
-    public SummonerInformation getCurrentSummnorBySummnorName(String summonerName) {
+    public SummonerInformation getCurrentSummnorBySummonerName(String summonerName) {
         return summonerInformationRepository.findCurrentSummonerBySummonerName(summonerName);
     }
 
-    public SummonerGameGrade getGameGradeBySummnorName(String accurateSummnorNameSummonerName){
-        return summonerGameGradeRepository.findGameGradeBySummonerName(accurateSummnorNameSummonerName);
+    public SummonerGameGrade getGameGradeBySummonerName(String accurateSummonerName){
+        return summonerGameGradeRepository.findGameGradeBySummonerName(accurateSummonerName);
     }
 }
