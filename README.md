@@ -2,9 +2,9 @@
 RiotGamesAPI
 
 [packageName - classNames]
-domain - Summoner , League/
+domain - SummonerInformation , SummonerGameGrade/
 config - HttpConfig , MongoConfig, SwaggerConfig/
 service - SummonerService/
 controller - RiotApiController/
 api - RiotGamesApiClient/
-repository - LeagueRepositroy
+repository - SummonerGameGradeRepository
