@@ -17,7 +17,7 @@ public class RiotGamesApiClient {
 
     private final String apiKey = "";// 빈칸으로 둘게요
 
-    private final ParameterizedTypeReference<List<SummonerGameGrade>> summnorGameGradeType = new ParameterizedTypeReference<List<SummonerGameGrade>>() {};
+    private final ParameterizedTypeReference<List<SummonerGameGrade>> summonerGameGradeType = new ParameterizedTypeReference<List<SummonerGameGrade>>() {};
 
 
     private final String currentSummonerURL = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{cityName}?api_key={apiKey}";
@@ -31,6 +31,6 @@ public class RiotGamesApiClient {
     }
 
     public List<SummonerGameGrade> getSummonerGameGrade(String encryptedSummonerId){
-        return  restTemplate.exchange(currentSummonerGradeURL, HttpMethod.GET, null, summnorGameGradeType, encryptedSummonerId, apiKey).getBody();
+        return  restTemplate.exchange(currentSummonerGradeURL, HttpMethod.GET, null, summonerGameGradeType, encryptedSummonerId, apiKey).getBody();
     }
 }
