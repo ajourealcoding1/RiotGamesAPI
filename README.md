@@ -1,10 +1,10 @@
 # RiotGamesAPI
 RiotGamesAPI
 
-[packageName - classNames]
-domain - SummonerInformation , SummonerGameGrade/
-config - HttpConfig , MongoConfig, SwaggerConfig/
-service - SummonerService/
-controller - RiotApiController/
-api - RiotGamesApiClient/
-repository - SummonerGameGradeRepository
+[packageName - classNames]\n
+domain - SummonerInformation , SummonerGameGrade/ \n
+config - HttpConfig , MongoConfig, SwaggerConfig/ \n
+service - SummonerService/ \n
+controller - RiotApiController/ \n
+api - RiotGamesApiClient/ \n
+repository - SummonerGameGradeRepository , SummonerInformationRepository \n
