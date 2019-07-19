@@ -26,15 +26,15 @@ public class SummonerService {
     private SummonerInformationRepository summonerInformationRepository;
     @Autowired
     private SummonerGameGradeRepository summonerGameGradeRepository;
+    private LinkedList<String> summonerNamesQueue = new LinkedList<>();
 
     public List<String> getAvailableSummonerNames() throws IOException {
         File availableSummonerNamesFile = new File("Riotgames-API");
         ObjectMapper objectMapper = new ObjectMapper();
 
-        return objectMapper.readValue(availableSummonerNamesFile, new TypeReference<List<String>>() {});
+        return objectMapper.readValue(availableSummonerNamesFile, new TypeReference<List<String>>() {
+        });
     }
-
-    private LinkedList<String> summonerNamesQueue = new LinkedList<>();
 
     @Scheduled(fixedDelay = 2000L)
     public void getSummnorGameGradePeriodicallyByCityName() throws IOException {
@@ -56,11 +56,10 @@ public class SummonerService {
         SummonerGameGrade SummonerGameGradeFromDb = summonerGameGradeRepository.findGameGradeBySummonerName(summonerName);
 
 
-        if(SummonerGameGrade != null || SummonerGameGradeFromDb == null || !SummonerGameGrade.equals(SummonerGameGradeFromDb)) {
+        if ((SummonerGameGrade != null && SummonerGameGradeFromDb == null) || !SummonerGameGrade.equals(SummonerGameGradeFromDb)) {
             SummonerGameGrade insertedOrUpdatedSummonerGameGrade = summonerGameGradeRepository.insertOrUpdatedSummonerGameGrade(SummonerGameGrade);
             log.info("SummonerGameGrade has inserted or updated successfully. SummonerGameGrade : {}", insertedOrUpdatedSummonerGameGrade);
-        }
-        else{
+        } else {
             log.info("SummonerGameGrade and SummonerGameGradeFromDb are the same");
         }
     }
@@ -69,7 +68,7 @@ public class SummonerService {
         return summonerInformationRepository.findCurrentSummonerBySummonerName(summonerName);
     }
 
-    public SummonerGameGrade getGameGradeBySummonerName(String accurateSummonerName){
+    public SummonerGameGrade getGameGradeBySummonerName(String accurateSummonerName) {
         return summonerGameGradeRepository.findGameGradeBySummonerName(accurateSummonerName);
     }
 }
